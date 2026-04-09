@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: harmomind
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 3000
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: /server.js
+      - type: rewrite
+        source: /*
+        destination: /index.html
